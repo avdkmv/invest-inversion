@@ -1,4 +1,5 @@
 import logging
+import time
 
 from typing import List
 
@@ -15,6 +16,7 @@ def get_flow_info(tickers, iteration) -> List:
     ticker_info = []
 
     for ticker_name in tickers:
+        t = time.process_time()
         logger.info(f"Getting info for {ticker_name}")
 
         figi = figi_service.get_figi(ticker_name)
@@ -36,6 +38,6 @@ def get_flow_info(tickers, iteration) -> List:
             hist=hist,
         )
         ticker_info.append(ticker)
-        logger.info(f"Got info for {ticker_name}")
+        logger.info(f"Got info for {ticker_name} in {time.process_time() - t}")
 
     return ticker_info
