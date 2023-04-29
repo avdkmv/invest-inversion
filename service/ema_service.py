@@ -2,7 +2,7 @@ import os
 import talib
 import numpy as np
 
-ITERATION = int(os.getenv('ITERATION'))
+ITERATION = int(os.getenv("ITERATION"))
 
 
 def calculate_ema(candles):

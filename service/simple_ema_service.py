@@ -1,6 +1,6 @@
 import os
 
-ITERATION = int(os.getenv('ITERATION'))
+ITERATION = int(os.getenv("ITERATION"))
 
 
 def get_ema(candle, ema):
