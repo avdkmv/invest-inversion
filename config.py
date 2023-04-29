@@ -3,4 +3,4 @@ import dotenv
 
 dotenv.load_dotenv(".env")
 
-TOKEN = os.environ["TOKEN"]
+TINKOFF_TOKEN = os.environ["TOKEN"]

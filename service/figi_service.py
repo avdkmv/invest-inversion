@@ -3,13 +3,15 @@ from tinkoff.invest import Client, SecurityTradingStatus
 from tinkoff.invest.services import InstrumentsService
 from tinkoff.invest.utils import quotation_to_decimal
 
-from config import TOKEN
+from config import TINKOFF_TOKEN
 
 
 def get_figi(ticker):
-    with Client(TOKEN) as client:
+    tickers = []
+
+    with Client(TINKOFF_TOKEN) as client:
         instruments: InstrumentsService = client.instruments
-        tickers = []
+
         for method in ["shares", "bonds", "etfs", "currencies", "futures"]:
             for item in getattr(instruments, method)().instruments:
                 tickers.append(

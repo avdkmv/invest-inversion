@@ -2,12 +2,12 @@ from tinkoff.invest import CandleInterval, Client
 from tinkoff.invest.utils import now
 from datetime import timedelta
 
-from config import TOKEN
+from config import TINKOFF_TOKEN
 
 
 def get_candles(figi):
     candles = []
-    with Client(TOKEN) as client:
+    with Client(TINKOFF_TOKEN) as client:
         for candle in client.get_all_candles(
             figi=figi,
             from_=now() - timedelta(days=100),
