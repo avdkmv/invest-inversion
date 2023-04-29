@@ -8,7 +8,7 @@ from tinkoff.invest.utils import quotation_to_decimal
 TOKEN = os.getenv('TOKEN')
 
 
-def getfigi(ticker):
+def get_figi(ticker):
     with Client(TOKEN) as client:
         instruments: InstrumentsService = client.instruments
         tickers = []

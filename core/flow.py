@@ -18,10 +18,10 @@ def get_flow_info() -> List:
     for ticker_name in TICKERS:
         print(f"Getting info for {ticker_name}")
 
-        figi = figi_service.getfigi(ticker_name)
+        figi = figi_service.get_figi(ticker_name)
         candles = candles_service.load_candles(figi)
         ema = round(ema_service.calculate_ema(candles), 2)
-        macd_fast, macd_slow, hist = macd_service.calculate_macd(candles)
+        macd_fast, macd_slow, hist = macd_service.calc_macd(candles)
 
         macd_fast = round(macd_fast[-1], 2)
         macd_slow = round(macd_slow[-1], 2)
