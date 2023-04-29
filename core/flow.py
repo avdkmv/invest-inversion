@@ -6,8 +6,8 @@ from model import TickerData
 from service import candles_service, ema_service, figi_service, macd_service
 
 try:
-    TICKERS = os.environ['TICKERS'].split()
-    ITERATION = int(os.environ['ITERATION'])
+    TICKERS = os.environ["TICKERS"].split()
+    ITERATION = int(os.environ["ITERATION"])
 except Exception as e:
     print("No env")
 
@@ -28,7 +28,13 @@ def get_flow_info() -> List:
         hist = round(hist[-1], 2)
 
         ticker = TickerData(
-            name=ticker_name, lastcandle=candles[ITERATION-1], ema=ema, macdfast=macd_fast, macdslow=macd_slow, hist=hist)
+            name=ticker_name,
+            lastcandle=candles[ITERATION - 1],
+            ema=ema,
+            macdfast=macd_fast,
+            macdslow=macd_slow,
+            hist=hist,
+        )
         tickers.append(ticker)
 
     return tickers

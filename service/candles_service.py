@@ -4,8 +4,8 @@ from tinkoff.invest import CandleInterval, Client
 from tinkoff.invest.utils import now
 from datetime import timedelta
 
-TOKEN = os.getenv('TOKEN')
-ITERATION = int(os.getenv('ITERATION'))
+TOKEN = os.getenv("TOKEN")
+ITERATION = int(os.getenv("ITERATION"))
 
 
 def load_candles(figi):
