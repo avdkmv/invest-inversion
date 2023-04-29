@@ -1,14 +1,21 @@
+import logging
+
 from typing import List
 
 from model import TickerData
 from service import candles_service, ema_service, figi_service, macd_service
 
+logger = logging.getLogger("invest-inversion")
+
 
 def get_flow_info(tickers, iteration) -> List:
+    if not tickers:
+        raise ValueError(f"Trying to get flow info for empty tickers list")
+
     ticker_info = []
 
     for ticker_name in tickers:
-        print(f"Getting info for {ticker_name}")
+        logger.info(f"Getting info for {ticker_name}")
 
         figi = figi_service.get_figi(ticker_name)
         candles = candles_service.get_candles(figi)[-iteration:]
@@ -29,5 +36,6 @@ def get_flow_info(tickers, iteration) -> List:
             hist=hist,
         )
         ticker_info.append(ticker)
+        logger.info(f"Got info for {ticker_name}")
 
     return ticker_info
