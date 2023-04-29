@@ -16,6 +16,5 @@ def load_candles(figi):
             from_=now() - timedelta(days=100),
             interval=CandleInterval.CANDLE_INTERVAL_30_MIN,
         ):
-            # print("candle = ", candle.close.units + candle.close.nano / 1000000000)
             candles.append(candle.close.units + candle.close.nano / 1000000000)
     return candles[-ITERATION:]

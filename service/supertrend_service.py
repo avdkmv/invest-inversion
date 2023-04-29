@@ -3,7 +3,7 @@ import ta
 
 
 def super_trend(close):
-    # Inputs for calculation are the close prices of the financial instrument
+    """Inputs for calculation are the close prices of the financial instrument"""
     xtr = ta.trend()
     st = 10 * (xtr - close) + 10 * (close - xtr[::-1])
     std_st = ta.std(st)
