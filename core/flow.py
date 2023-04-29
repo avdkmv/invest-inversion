@@ -1,32 +1,36 @@
 import os
+import logging
 
-from model import Ticker
-from service import FigiService, CandlesService, EmaService, MacdService
+from typing import List
 
-TICKERS = os.getenv('TICKERS').split()
-ITERATION = int(os.getenv('ITERATION'))
+from model import TickerData
+from service import candles_service, ema_service, figi_service, macd_service
 
-class Flow:
+try:
+    TICKERS = os.environ['TICKERS'].split()
+    ITERATION = int(os.environ['ITERATION'])
+except Exception as e:
+    print("No env")
 
-    def getInfo():
-        tickers = []
+FORMAT = '%(asctime)s %(clientip)-15s %(user)-8s %(message)s'
 
-        for tickerName in TICKERS:
-            ticker = Ticker()
-            ticker.setTicker(tickerName)
+def get_flow_info() -> List:
+    tickers = []
 
-            figi = FigiService.getfigi(tickerName)
-            candles = CandlesService.loadCandles(figi)
-            ticker.setLastCandle(candles[ITERATION-1])
+    for ticker_name in TICKERS:
+        print(f"Getting info for {ticker_name}")
 
-            ema = EmaService.calculateEma(candles)
-            ticker.setEma(round(ema,2))
-            
-            macdFast, macdSlow, hist = MacdService.calculateMacd(candles)
-            ticker.setMacdFast(round(macdFast[-1],2))
-            ticker.setMacdSlow(round(macdSlow[-1],2))
-            ticker.setHist(round(hist[-1],2))
-            tickers.append(ticker)
+        figi = figi_service.getfigi(ticker_name)
+        candles = candles_service.loadCandles(figi)
+        ema = round(ema_service.calculateEma(candles), 2)
+        macd_fast, macd_slow, hist = macd_service.calculateMacd(candles)
 
-        for ticker in tickers:
-            print(ticker)
+        macd_fast = round(macd_fast[-1],2)
+        macd_slow = round(macd_slow[-1],2)
+        hist = round(hist[-1],2)
+
+        ticker = TickerData(name=ticker_name, lastcandle=candles[ITERATION-1], ema=ema, macdfast=macd_fast, macdslow=macd_slow, hist=hist)
+        tickers.append(ticker)
+
+
+    return tickers
