@@ -8,7 +8,7 @@ TOKEN = os.getenv('TOKEN')
 ITERATION = int(os.getenv('ITERATION'))
 
 
-def loadCandles(figi):
+def load_candles(figi):
     candles = []
     with Client(TOKEN) as client:
         for candle in client.get_all_candles(
