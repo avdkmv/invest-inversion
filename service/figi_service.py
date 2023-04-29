@@ -48,6 +48,6 @@ def getfigi(ticker):
             return
 
         return ticker_df["figi"].iloc[0]
-            # print(f"\nTicker {ticker} have figi={figi}\n")
-            # print(f"Additional info for this {ticker} ticker:")
-            # print(ticker_df.iloc[0])
+        # print(f"\nTicker {ticker} have figi={figi}\n")
+        # print(f"Additional info for this {ticker} ticker:")
+        # print(ticker_df.iloc[0])

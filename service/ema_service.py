@@ -5,6 +5,6 @@ import numpy as np
 ITERATION = int(os.getenv('ITERATION'))
 
 
-def calculateEma(candles):
+def calculate_ema(candles):
     candlesNp = np.array(candles)
-    return talib.EMA(candlesNp,ITERATION)[-1]
+    return talib.EMA(candlesNp, ITERATION)[-1]
