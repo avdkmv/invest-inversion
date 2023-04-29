@@ -1,6 +1,4 @@
 import talib
 
-class SuperTrendService:
-
-    def calculateSuperTrend():
-        supertrend = talib.SUPETREND()
+def calculateSuperTrend():
+    return talib.SUPETREND()

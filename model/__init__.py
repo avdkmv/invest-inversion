@@ -1,1 +1,1 @@
-from .ticker import Ticker
+from .ticker import TickerData
