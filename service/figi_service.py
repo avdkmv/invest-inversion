@@ -1,11 +1,9 @@
-import os
-
 from pandas import DataFrame
 from tinkoff.invest import Client, SecurityTradingStatus
 from tinkoff.invest.services import InstrumentsService
 from tinkoff.invest.utils import quotation_to_decimal
 
-TOKEN = os.getenv("TOKEN")
+from config import TOKEN
 
 
 def get_figi(ticker):
