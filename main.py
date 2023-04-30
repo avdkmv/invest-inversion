@@ -32,7 +32,7 @@ def parse_args():
         type=str,
         required=False,
         nargs="+",
-        default="SBER GAZP MTLR",
+        default=["SBER", "GAZP", "MTLR"],
         help="List of tickers to get. Example: SBER GAZP MTLR",
     )
     argparser.add_argument(
