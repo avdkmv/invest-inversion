@@ -3,7 +3,7 @@ import time
 
 from typing import List
 
-from model import TickerData
+from model.ticker import TickerData
 from service import candles_service, ema_service, figi_service, macd_service
 
 logger = logging.getLogger("invest-inversion")

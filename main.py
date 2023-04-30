@@ -45,7 +45,6 @@ def parse_args():
     )
 
     args = argparser.parse_args()
-    args.tickers = args.tickers.split()
 
     return args
 
