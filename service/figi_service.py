@@ -1,17 +1,17 @@
-import os
-
 from pandas import DataFrame
 from tinkoff.invest import Client, SecurityTradingStatus
 from tinkoff.invest.services import InstrumentsService
 from tinkoff.invest.utils import quotation_to_decimal
 
-TOKEN = os.getenv('TOKEN')
+from config import TINKOFF_TOKEN
 
 
-def getfigi(ticker):
-    with Client(TOKEN) as client:
+def get_figi(ticker):
+    tickers = []
+
+    with Client(TINKOFF_TOKEN) as client:
         instruments: InstrumentsService = client.instruments
-        tickers = []
+
         for method in ["shares", "bonds", "etfs", "currencies", "futures"]:
             for item in getattr(instruments, method)().instruments:
                 tickers.append(
@@ -48,6 +48,3 @@ def getfigi(ticker):
             return
 
         return ticker_df["figi"].iloc[0]
-        # print(f"\nTicker {ticker} have figi={figi}\n")
-        # print(f"Additional info for this {ticker} ticker:")
-        # print(ticker_df.iloc[0])
